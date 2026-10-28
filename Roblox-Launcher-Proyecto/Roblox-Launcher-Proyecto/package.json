@@ -1,0 +1,19 @@
+{
+  "name": "roblox-launcher",
+  "version": "1.0.0",
+  "description": "Lanzador de Windows para abrir Roblox mediante sus mecanismos oficiales",
+  "main": "src/main.js",
+  "license": "UNLICENSED",
+  "scripts": {"start": "electron .", "dist": "electron-builder --win nsis"},
+  "devDependencies": {"electron": "^35.2.0", "electron-builder": "^26.0.12"},
+  "dependencies": {"electron-updater": "^6.6.2"},
+  "build": {
+    "appId": "com.robloxlauncher.app",
+    "productName": "Roblox Launcher",
+    "directories": {"output": "release"},
+    "files": ["src/**/*", "package.json"],
+    "win": {"target": [{"target": "nsis", "arch": ["x64"]}], "artifactName": "Roblox-Launcher-Setup-${version}.${ext}"},
+    "nsis": {"oneClick": false, "allowToChangeInstallationDirectory": true, "createDesktopShortcut": true, "createStartMenuShortcut": true},
+    "publish": [{"provider": "github", "owner": "CAMBIA_TU_USUARIO", "repo": "CAMBIA_TU_REPOSITORIO"}]
+  }
+}
