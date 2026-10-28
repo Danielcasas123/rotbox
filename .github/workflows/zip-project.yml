@@ -1,0 +1,29 @@
+
+name: Comprimir proyecto Roblox Launcher
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar proyecto
+        uses: actions/checkout@v4
+
+      - name: Crear ZIP
+        run: |
+          zip -r Roblox-Launcher-Proyecto.zip . \
+            -x ".git/*" \
+               "node_modules/*" \
+               "release/*" \
+               ".github/*"
+
+      - name: Guardar ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: Roblox-Launcher-Proyecto
+          path: Roblox-Launcher-Proyecto.zip
+          retention-days: 14
